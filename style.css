@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.weather-app img {
+  width: 100px;
+  height: 100px;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: url("img/bady-abbas-MDgRcuGYu58-unsplash.jpg");
+  background-size: cover;
+  font-size: 20px;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.247);
+}
+section {
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.city {
+  width: 100%;
+}
+.city h1 {
+  font-size: 1.2em;
+  font-weight: 400;
+}
+.city h2 {
+  font-size: 0.8em;
+  color: rgb(255, 255, 255);
+  font-weight: 300;
+}
+
+.weather-app,
+.weather-info {
+  flex-grow: 2;
+}
+
+.weather-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-app .degrees {
+  font-size: 3em;
+  font-weight: bold;
+  padding-left: 20px;
+}
+.weather-app p:last-child {
+  color: rgb(255, 255, 255);
+  font-size: 0.8em;
+}
+
+.weather-info {
+  width: 100%;
+  height: 25%;
+  background-color: rgba(255, 255, 255, 0.096);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.weather-info h2 {
+  width: 100%;
+  height: 20px;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+.weather-info h3 {
+  font-size: 0.8em;
+  padding-bottom: 5px;
+  font-weight: 300;
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.info div {
+  width: 50%;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.info div p {
+  font-weight: bold;
+}
+
+/* Weather Types */
+
+.clear {
+  background: url("img/patrick-fore-1gT773Pm8Mo-unsplash.jpg");
+  background-size: cover;
+}
+
+.clearNight {
+  background: url("img/jinen-shah-TwZb_z0Cf88-unsplash.jpg");
+  background-size: cover;
+}
+.rain {
+  background: url("img/osman-rana-GXEZuWo5m4I-unsplash.jpg");
+  background-size: cover;
+}
+
+.cloud {
+  background: url("img/zbynek-burival-8iZG31eXkks-unsplash.jpg");
+  background-size: cover;
+}
+
+.cloudNight {
+  background: url("img/perchek-industrie-0cpfP5E86B4-unsplash.jpg");
+  background-size: cover;
+}
