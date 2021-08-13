@@ -3,6 +3,11 @@
   padding: 0;
   margin: 0;
 }
+html {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
 
 body {
   font-family: "Nunito", sans-serif;
@@ -78,6 +83,10 @@ section {
   background-color: rgba(255, 255, 255, 0.151);
   border-radius: 5px;
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .weather-info h3 {
@@ -86,20 +95,12 @@ section {
   color: rgb(204, 226, 238);
 }
 
-.info {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding-top: 20px;
-}
-
-.info div {
+.weather-info div {
   width: 50%;
-  padding: 20px 0;
   text-align: center;
 }
 
-.info div p {
+.weather-info div p {
   font-weight: bold;
   font-size: 1.2em;
 }
