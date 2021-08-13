@@ -4,13 +4,8 @@
   margin: 0;
 }
 
-.weather-app img {
-  width: 100px;
-  height: 100px;
-}
-
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Nunito", sans-serif;
   background: url("img/bady-abbas-MDgRcuGYu58-unsplash.jpg");
   background-size: cover;
   font-size: 20px;
@@ -24,7 +19,7 @@ body::after {
   right: 0;
   bottom: 0;
   z-index: -1;
-  background-color: rgba(0, 0, 0, 0.247);
+  background-color: rgba(34, 19, 235, 0.11);
 }
 section {
   height: 100vh;
@@ -36,23 +31,29 @@ section {
 
 .city {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  color: rgb(204, 226, 238);
 }
 .city h1 {
-  font-size: 1.2em;
+  font-size: 1.8em;
   font-weight: 400;
 }
 .city h2 {
   font-size: 0.8em;
-  color: rgb(255, 255, 255);
-  font-weight: 300;
+  font-weight: 400;
 }
-
+.city,
 .weather-app,
 .weather-info {
-  flex-grow: 2;
+  flex-grow: 1;
 }
 
 .weather-app {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,35 +61,29 @@ section {
 }
 
 .weather-app .degrees {
-  font-size: 3em;
-  font-weight: bold;
+  font-size: 5em;
+  font-weight: 400;
   padding-left: 20px;
 }
 .weather-app p:last-child {
-  color: rgb(255, 255, 255);
-  font-size: 0.8em;
+  color: rgb(204, 226, 238);
+  font-size: 1em;
+  padding-bottom: 20px;
+  text-transform: capitalize;
 }
 
 .weather-info {
   width: 100%;
-  height: 25%;
-  background-color: rgba(255, 255, 255, 0.096);
-  padding: 15px;
-  border-radius: 10px;
+  height: 35%;
+  background-color: rgba(255, 255, 255, 0.151);
+  border-radius: 5px;
   text-align: center;
 }
 
-.weather-info h2 {
-  width: 100%;
-  height: 20px;
-  font-size: 1em;
-  font-weight: 400;
-}
-
 .weather-info h3 {
-  font-size: 0.8em;
-  padding-bottom: 5px;
+  font-size: 1em;
   font-weight: 300;
+  color: rgb(204, 226, 238);
 }
 
 .info {
@@ -106,6 +101,7 @@ section {
 
 .info div p {
   font-weight: bold;
+  font-size: 1.2em;
 }
 
 /* Weather Types */

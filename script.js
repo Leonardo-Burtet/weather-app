@@ -11,7 +11,7 @@ async function getDados(lat, lon) {
   try {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=decfdd61b5ac2ba68b3b549d378565d0&units=metric`
-      //`https://api.openweathermap.org/data/2.5/weather?q=jamaica&appid=decfdd61b5ac2ba68b3b549d378565d0&units=metric&lang=pt_br`
+      //`https://api.openweathermap.org/data/2.5/weather?q=china&appid=decfdd61b5ac2ba68b3b549d378565d0&units=metric&lang=pt_br`
     );
     const responseJSON = await response.json();
     console.log(responseJSON);
@@ -28,7 +28,7 @@ async function getDados(lat, lon) {
     degrees.innerText = `${responseJSON.main.temp.toFixed(0)}°`;
 
     const weather = document.querySelector(".weather-app p:last-child");
-    weather.innerText = responseJSON.weather[0].description.toUpperCase();
+    weather.innerText = responseJSON.weather[0].description;
 
     const max = document.querySelector(".max p");
     max.innerText = `${responseJSON.main.temp_max.toFixed(0)}°`;
@@ -42,7 +42,6 @@ async function getDados(lat, lon) {
     humidity.innerText = `${responseJSON.main.humidity}%`;
 
     const body = document.querySelector("body");
-    const img = document.querySelector(".weather-app img");
     const info = document.querySelectorAll(".info h3");
 
     if (responseJSON.weather[0].main === "Clear") {
@@ -50,14 +49,11 @@ async function getDados(lat, lon) {
         date / 1000 > responseJSON.sys.sunrise &&
         date / 1000 < responseJSON.sys.sunset
       ) {
-        img.src = "img/sun.png";
         body.classList.add("clear");
       } else {
-        img.src = "img/moon.png";
         body.classList.add("clearNight");
       }
     } else if (responseJSON.weather[0].main === "Clouds") {
-      img.src = "img/cloud.png";
       if (
         date / 1000 > responseJSON.sys.sunrise &&
         date / 1000 < responseJSON.sys.sunset
@@ -70,9 +66,8 @@ async function getDados(lat, lon) {
       }
     } else if (responseJSON.weather[0].main === "Rain") {
       body.classList.add("rain");
-      img.src = "img/rain.png";
+
       info.forEach((item) => (item.style.color = "white"));
-      city.style.color = "white";
     }
   } catch (erro) {
     console.log(erro);
