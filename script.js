@@ -1,6 +1,6 @@
 const dateNow = new Date();
 const day = dayString(dateNow);
-const city = document.querySelector(".city h1");
+const cityH1 = document.querySelector(".city h1");
 const today = document.querySelector(".city h2");
 const degrees = document.querySelector(".degrees");
 const weather = document.querySelector(".weather-app p:last-child");
@@ -16,18 +16,19 @@ if ("geolocation" in navigator) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
     getData(lat, lon);
-    //getDados();
   });
+} else {
+  alert(
+    "I'm sorry, but geolocation services are not supported by your browser."
+  );
 }
 
 async function getData(lat, lon) {
   try {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=decfdd61b5ac2ba68b3b549d378565d0&units=metric`
-      //`https://api.openweathermap.org/data/2.5/weather?q=china&appid=decfdd61b5ac2ba68b3b549d378565d0&units=metric&lang=pt_br`
     );
     const data = await response.json();
-
     weatherApp(data);
   } catch (erro) {
     console.log(erro);
@@ -79,7 +80,7 @@ function weatherApp(data) {
       ) {
         body.classList.add("cloud");
       } else {
-        city.style.color = "white";
+        cityH1.style.color = "white";
         body.classList.add("cloudNight");
         info.forEach((item) => (item.style.color = "white"));
       }
@@ -91,7 +92,7 @@ function weatherApp(data) {
     }
   }
   getWeather(data);
-  city.innerText = `${data.name}, ${data.sys.country}`;
+  cityH1.innerText = `${data.name}, ${data.sys.country}`;
   today.innerText = `${day}
   ${dateNow.getHours()}:${
     dateNow.getMinutes() < 10
