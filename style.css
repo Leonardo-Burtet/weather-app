@@ -28,6 +28,8 @@ body::after {
 }
 section {
   height: 100vh;
+  max-width: 60vh;
+  margin: 0 auto;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -44,12 +46,12 @@ section {
   color: rgb(204, 226, 238);
 }
 .city h1 {
-  font-size: 1.8em;
+  font-size: 2.2em;
   font-weight: 400;
 }
 .city h2 {
-  font-size: 0.8em;
-  font-weight: 400;
+  font-size: 1.5em;
+  font-weight: 200;
 }
 .city,
 .weather-app,
@@ -66,13 +68,13 @@ section {
 }
 
 .weather-app .degrees {
-  font-size: 5em;
+  font-size: 8em;
   font-weight: 400;
   padding-left: 20px;
 }
 .weather-app p:last-child {
   color: rgb(204, 226, 238);
-  font-size: 1em;
+  font-size: 1.2em;
   padding-bottom: 20px;
   text-transform: capitalize;
 }
@@ -90,8 +92,8 @@ section {
 }
 
 .weather-info h3 {
-  font-size: 1em;
-  font-weight: 300;
+  font-size: 2em;
+  font-weight: 200;
   color: rgb(204, 226, 238);
 }
 
@@ -102,7 +104,7 @@ section {
 
 .weather-info div p {
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 2em;
 }
 
 /* Weather Types */

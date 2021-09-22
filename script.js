@@ -26,10 +26,16 @@ if ("geolocation" in navigator) {
 async function getData(lat, lon) {
   try {
     const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=decfdd61b5ac2ba68b3b549d378565d0&units=metric`
+    );
+    const responseCity = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=decfdd61b5ac2ba68b3b549d378565d0&units=metric`
     );
+    const dataCity = await responseCity.json();
     const data = await response.json();
-    weatherApp(data);
+    console.log(dataCity);
+    console.log(data);
+    weatherApp(data, dataCity);
   } catch (erro) {
     console.log(erro);
   }
@@ -60,12 +66,12 @@ function dayString(dateNow) {
   }
 }
 
-function weatherApp(data) {
+function weatherApp(data, dataCity) {
   function getWeather(data) {
-    if (data.weather[0].main === "Clear") {
+    if (data.current.weather[0].main === "Clear") {
       if (
-        dateNow / 1000 > data.sys.sunrise &&
-        dateNow / 1000 < data.sys.sunset
+        dateNow / 1000 > data.current.sunrise &&
+        dateNow / 1000 < data.current.sunset
       ) {
         body.classList.add("clear");
       } else {
@@ -73,10 +79,10 @@ function weatherApp(data) {
       }
     }
 
-    if (data.weather[0].main === "Clouds") {
+    if (data.current.weather[0].main === "Clouds") {
       if (
-        dateNow / 1000 > data.sys.sunrise &&
-        dateNow / 1000 < data.sys.sunset
+        dateNow / 1000 > data.current.sunrise &&
+        dateNow / 1000 < data.current.sunset
       ) {
         body.classList.add("cloud");
       } else {
@@ -86,23 +92,23 @@ function weatherApp(data) {
       }
     }
 
-    if (data.weather[0].main === "Rain") {
+    if (data.current.weather[0].main === "Rain") {
       body.classList.add("rain");
       info.forEach((item) => (item.style.color = "white"));
     }
   }
-  getWeather(data);
-  cityH1.innerText = `${data.name}, ${data.sys.country}`;
+  getWeather(data, dataCity);
+  cityH1.innerText = `${dataCity.name}, ${dataCity.sys.country}`;
   today.innerText = `${day}
   ${dateNow.getHours()}:${
     dateNow.getMinutes() < 10
       ? "0" + dateNow.getMinutes()
       : dateNow.getMinutes()
   }`;
-  degrees.innerText = `${data.main.temp.toFixed(0)}°`;
-  weather.innerText = data.weather[0].description;
-  max.innerText = `${data.main.temp_max.toFixed(0)}°`;
-  visibility.innerText = `${(data.visibility / 1000).toFixed(0)}Km`;
-  min.innerText = `${Math.trunc(data.main.temp_min)}°`;
-  humidity.innerText = `${data.main.humidity}%`;
+  degrees.innerText = `${data.current.temp.toFixed(0)}°`;
+  weather.innerText = data.current.weather[0].description;
+  max.innerText = `${data.daily[0].temp.max.toFixed(0)}°`;
+  visibility.innerText = `${(data.current.visibility / 1000).toFixed(0)}Km`;
+  min.innerText = `${Math.trunc(data.daily[0].temp.min)}°`;
+  humidity.innerText = `${data.current.humidity}%`;
 }
