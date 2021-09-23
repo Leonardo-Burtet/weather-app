@@ -40,18 +40,20 @@ async function getData(lat, lon) {
 
 function addNextForecast(data) {
   let index = 0;
-  console.log(nextDay);
+
   nextDay.forEach((element) => {
+    console.log(element.children[2].children[1]);
     element.children[1].innerText = data.daily[index].weather[0].main;
-    element.children[3].innerText = data.daily[index].temp.max.toFixed(0);
-    element.children[5].innerText = data.daily[index].temp.min.toFixed(0);
+    element.children[2].children[1].innerText =
+      data.daily[index].temp.max.toFixed(0);
+    element.children[2].children[3].innerText =
+      data.daily[index].temp.min.toFixed(0);
     index++;
   });
 }
 
 function nextForecast(data) {
   let i = 0;
-  console.log(data);
   const nextDate = currentDate.getDay() + 1;
   if (nextDate <= 4) {
     nextDay.forEach((element) => {

@@ -104,9 +104,15 @@ section {
 .weather-info div {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 0.8em;
 }
 
+.weather-info div p {
+  width: 50px;
+  text-align: center;
+  padding: 0 5px;
+}
 /* Weather Types */
 
 .clear {
