@@ -38,6 +38,17 @@ async function getData(lat, lon) {
   }
 }
 
+function addNextForecast(data) {
+  let index = 0;
+  console.log(nextDay);
+  nextDay.forEach((element) => {
+    element.children[1].innerText = data.daily[index].weather[0].main;
+    element.children[3].innerText = data.daily[index].temp.max.toFixed(0);
+    element.children[5].innerText = data.daily[index].temp.min.toFixed(0);
+    index++;
+  });
+}
+
 function nextForecast(data) {
   let i = 0;
   console.log(data);
@@ -45,28 +56,36 @@ function nextForecast(data) {
   if (nextDate <= 4) {
     nextDay.forEach((element) => {
       element.children[0].innerText = dayString(nextDate + i++);
-      element.children[1].innerText = data.daily[i - 1].weather[0].main;
-      element.children[3].innerText = data.daily[i - 1].temp.max.toFixed(0);
-      element.children[5].innerText = data.daily[i - 1].temp.min.toFixed(0);
     });
+    addNextForecast(data);
   }
 
   if (nextDate === 5) {
-    nextDay[0].children[0].innerText = dayString(6);
-    nextDay[1].children[0].innerText = dayString(7);
-    nextDay[2].children[0].innerText = dayString(1);
+    nextDay[0].children[0].innerText = dayString(5);
+    nextDay[1].children[0].innerText = dayString(6);
+    nextDay[2].children[0].innerText = dayString(7);
+    addNextForecast(data);
   }
 
   if (nextDate === 6) {
-    nextDay[0].children[0].innerText = dayString(7);
-    nextDay[1].children[0].innerText = dayString(1);
-    nextDay[2].children[0].innerText = dayString(2);
+    nextDay[0].children[0].innerText = dayString(6);
+    nextDay[1].children[0].innerText = dayString(7);
+    nextDay[2].children[0].innerText = dayString(1);
+    addNextForecast(data);
   }
 
   if (nextDate === 7) {
+    nextDay[0].children[0].innerText = dayString(7);
+    nextDay[1].children[0].innerText = dayString(1);
+    nextDay[2].children[0].innerText = dayString(2);
+    addNextForecast(data);
+  }
+
+  if (nextDate === 8) {
     nextDay[0].children[0].innerText = dayString(1);
     nextDay[1].children[0].innerText = dayString(2);
     nextDay[2].children[0].innerText = dayString(3);
+    addNextForecast(data);
   }
 }
 
