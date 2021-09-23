@@ -7,7 +7,6 @@ const max = document.querySelector(".max p");
 const min = document.querySelector(".min p");
 const section = document.querySelector("section");
 const body = document.querySelector("body");
-const info = document.querySelectorAll(".info h3");
 const nextDay = document.querySelectorAll(".next-day");
 
 if ("geolocation" in navigator) {
@@ -138,13 +137,12 @@ function getWeather(forecastData) {
     } else {
       nameCity.style.color = "white";
       body.classList.add("cloudNight");
-      info.forEach((item) => (item.style.color = "white"));
+      nameDay.style.color = "white";
     }
   }
 
   if (forecastData.current.weather[0].main === "Rain") {
     body.classList.add("rain");
-    info.forEach((item) => (item.style.color = "white"));
   }
 }
 

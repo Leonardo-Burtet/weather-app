@@ -54,12 +54,12 @@ section {
   font-weight: 400;
 }
 .weather__city,
-.weather-app,
-.weather-info {
+.weather__app,
+.weather__info {
   flex-grow: 1;
 }
 
-.weather-app {
+.weather__app {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -69,21 +69,32 @@ section {
   animation: show 1.8s forwards;
 }
 
-.weather-app .degrees {
+.weather__app .degrees {
   font-size: 4em;
   font-weight: 400;
 }
-.weather-app .temp {
-  width: 80%;
-  display: flex;
-  justify-content: space-between;
-}
-.weather-app p:last-child {
+.weather__app p:last-child {
   color: #ffffff;
   font-size: 1em;
 }
 
-.weather-info {
+.weather__app .temp {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.weather__app .temp div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.weather__app .temp div p {
+  padding: 0 15px;
+}
+
+.weather__info {
   width: 100%;
   height: 35%;
   padding: 10px 10px 50px 10px;
@@ -97,13 +108,13 @@ section {
   animation: show 2.5s forwards;
 }
 
-.weather-info h3 {
+.weather__info h3 {
   font-size: 1em;
   font-weight: 400;
   color: rgb(0, 0, 0);
 }
 
-.weather-info div {
+.weather__info div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -111,20 +122,10 @@ section {
   font-weight: 300;
 }
 
-.weather-info div p {
+.weather__info div p {
   width: 50px;
   text-align: center;
   padding: 0 5px;
-}
-
-.temp div {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.temp div p {
-  padding: 0 15px;
 }
 
 /* Weather Types */
@@ -159,7 +160,7 @@ section {
 }
 
 .min {
-  color: rgb(2, 53, 100);
+  color: rgb(3, 100, 190);
 }
 
 /* Anim */
