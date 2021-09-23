@@ -1,15 +1,13 @@
-const dateNow = new Date();
-const day = dayString(dateNow);
+const currentDate = new Date();
+const day = dayString(currentDate.getDay());
 const cityH1 = document.querySelector(".city h1");
 const today = document.querySelector(".city h2");
 const degrees = document.querySelector(".degrees");
-const weather = document.querySelector(".weather-app p:last-child");
 const max = document.querySelector(".max p");
-const visibility = document.querySelector(".visibility p");
 const min = document.querySelector(".min p");
-const humidity = document.querySelector(".humidity p");
 const body = document.querySelector("body");
 const info = document.querySelectorAll(".info h3");
+const nextDay = document.querySelectorAll(".next-day");
 
 if ("geolocation" in navigator) {
   navigator.geolocation.getCurrentPosition(function (position) {
@@ -33,16 +31,47 @@ async function getData(lat, lon) {
     );
     const dataCity = await responseCity.json();
     const data = await response.json();
-    console.log(dataCity);
-    console.log(data);
+
     weatherApp(data, dataCity);
   } catch (erro) {
     console.log(erro);
   }
 }
 
-function dayString(dateNow) {
-  switch (dateNow.getDay()) {
+function nextForecast(data) {
+  let i = 0;
+  console.log(data);
+  const nextDate = currentDate.getDay() + 1;
+  if (nextDate <= 4) {
+    nextDay.forEach((element) => {
+      element.children[0].innerText = dayString(nextDate + i++);
+      element.children[1].innerText = data.daily[i - 1].weather[0].main;
+      element.children[3].innerText = data.daily[i - 1].temp.max.toFixed(0);
+      element.children[5].innerText = data.daily[i - 1].temp.min.toFixed(0);
+    });
+  }
+
+  if (nextDate === 5) {
+    nextDay[0].children[0].innerText = dayString(6);
+    nextDay[1].children[0].innerText = dayString(7);
+    nextDay[2].children[0].innerText = dayString(1);
+  }
+
+  if (nextDate === 6) {
+    nextDay[0].children[0].innerText = dayString(7);
+    nextDay[1].children[0].innerText = dayString(1);
+    nextDay[2].children[0].innerText = dayString(2);
+  }
+
+  if (nextDate === 7) {
+    nextDay[0].children[0].innerText = dayString(1);
+    nextDay[1].children[0].innerText = dayString(2);
+    nextDay[2].children[0].innerText = dayString(3);
+  }
+}
+
+function dayString(day) {
+  switch (day) {
     case 1:
       return "Monday";
 
@@ -67,11 +96,12 @@ function dayString(dateNow) {
 }
 
 function weatherApp(data, dataCity) {
+  nextForecast(data);
   function getWeather(data) {
     if (data.current.weather[0].main === "Clear") {
       if (
-        dateNow / 1000 > data.current.sunrise &&
-        dateNow / 1000 < data.current.sunset
+        currentDate / 1000 > data.current.sunrise &&
+        currentDate / 1000 < data.current.sunset
       ) {
         body.classList.add("clear");
       } else {
@@ -81,8 +111,8 @@ function weatherApp(data, dataCity) {
 
     if (data.current.weather[0].main === "Clouds") {
       if (
-        dateNow / 1000 > data.current.sunrise &&
-        dateNow / 1000 < data.current.sunset
+        currentDate / 1000 > data.current.sunrise &&
+        currentDate / 1000 < data.current.sunset
       ) {
         body.classList.add("cloud");
       } else {
@@ -100,15 +130,12 @@ function weatherApp(data, dataCity) {
   getWeather(data, dataCity);
   cityH1.innerText = `${dataCity.name}, ${dataCity.sys.country}`;
   today.innerText = `${day}
-  ${dateNow.getHours()}:${
-    dateNow.getMinutes() < 10
-      ? "0" + dateNow.getMinutes()
-      : dateNow.getMinutes()
+  ${currentDate.getHours()}:${
+    currentDate.getMinutes() < 10
+      ? "0" + currentDate.getMinutes()
+      : currentDate.getMinutes()
   }`;
   degrees.innerText = `${data.current.temp.toFixed(0)}°`;
-  weather.innerText = data.current.weather[0].description;
   max.innerText = `${data.daily[0].temp.max.toFixed(0)}°`;
-  visibility.innerText = `${(data.current.visibility / 1000).toFixed(0)}Km`;
   min.innerText = `${Math.trunc(data.daily[0].temp.min)}°`;
-  humidity.innerText = `${data.current.humidity}%`;
 }

@@ -46,11 +46,11 @@ section {
   color: rgb(204, 226, 238);
 }
 .city h1 {
-  font-size: 2.2em;
+  font-size: 1em;
   font-weight: 400;
 }
 .city h2 {
-  font-size: 1.5em;
+  font-size: 0.8em;
   font-weight: 200;
 }
 .city,
@@ -68,43 +68,44 @@ section {
 }
 
 .weather-app .degrees {
-  font-size: 8em;
+  font-size: 4em;
   font-weight: 400;
   padding-left: 20px;
 }
 .weather-app p:last-child {
   color: rgb(204, 226, 238);
-  font-size: 1.2em;
+  font-size: 0.6em;
   padding-bottom: 20px;
   text-transform: capitalize;
 }
 
+.weather-app .temp {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+}
 .weather-info {
   width: 100%;
   height: 35%;
-  background-color: rgba(255, 255, 255, 0.151);
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.534);
   border-radius: 5px;
   text-align: center;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
 .weather-info h3 {
-  font-size: 2em;
-  font-weight: 200;
-  color: rgb(204, 226, 238);
+  font-size: 0.7em;
+  font-weight: 400;
+  color: rgb(0, 0, 0);
 }
 
 .weather-info div {
-  width: 50%;
-  text-align: center;
-}
-
-.weather-info div p {
-  font-weight: bold;
-  font-size: 2em;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8em;
 }
 
 /* Weather Types */
