@@ -11,7 +11,6 @@ html {
 
 body {
   font-family: "Roboto Mono", monospace;
-  background: url("img/bady-abbas-MDgRcuGYu58-unsplash.jpg");
   background-size: cover;
   font-size: 20px;
 }
@@ -24,7 +23,7 @@ body::after {
   right: 0;
   bottom: 0;
   z-index: -1;
-  background-color: rgba(34, 19, 235, 0.11);
+  background-color: rgba(199, 197, 224, 0.11);
 }
 section {
   height: 100vh;
@@ -33,26 +32,28 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: 0;
 }
 
-.city {
+.weather__city {
   width: 100%;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
   align-items: center;
-  color: rgb(204, 226, 238);
+  color: #272727;
 }
-.city h1 {
+.weather__city h1 {
   font-size: 1em;
   font-weight: 700;
+  color: #272727;
 }
-.city h2 {
+.weather__city h2 {
   font-size: 0.8em;
   font-weight: 400;
 }
-.city,
+.weather__city,
 .weather-app,
 .weather-info {
   flex-grow: 1;
@@ -64,6 +65,8 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  animation: show 1.8s forwards;
 }
 
 .weather-app .degrees {
@@ -85,11 +88,13 @@ section {
   height: 35%;
   padding: 10px 10px 50px 10px;
   background-color: rgba(255, 255, 255, 0.534);
-  border-radius: 5px;
+  border-radius: 0px 150px 0 0;
   text-align: center;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  opacity: 0;
+  animation: show 2.5s forwards;
 }
 
 .weather-info h3 {
@@ -104,10 +109,6 @@ section {
   align-items: center;
   font-size: 0.8em;
   font-weight: 300;
-}
-
-.weather-info .next-day {
-  border-bottom: 2px solid #0000002f;
 }
 
 .weather-info div p {
@@ -125,6 +126,7 @@ section {
 .temp div p {
   padding: 0 15px;
 }
+
 /* Weather Types */
 
 .clear {
@@ -151,11 +153,23 @@ section {
   background-size: cover;
 }
 
-/*Temperature max and min*/
+/*Temperature */
 .max {
   color: #810000;
 }
 
 .min {
   color: rgb(2, 53, 100);
+}
+
+/* Anim */
+
+@keyframes show {
+  from {
+    transform: translateX(-500px);
+  }
+
+  to {
+    opacity: 1;
+  }
 }
