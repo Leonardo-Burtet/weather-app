@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: "Roboto Mono", monospace;
   background: url("img/bady-abbas-MDgRcuGYu58-unsplash.jpg");
   background-size: cover;
   font-size: 20px;
@@ -46,11 +46,11 @@ section {
 }
 .city h1 {
   font-size: 1em;
-  font-weight: 400;
+  font-weight: 700;
 }
 .city h2 {
   font-size: 0.8em;
-  font-weight: 200;
+  font-weight: 400;
 }
 .city,
 .weather-app,
@@ -69,20 +69,17 @@ section {
 .weather-app .degrees {
   font-size: 4em;
   font-weight: 400;
-  padding-left: 20px;
+}
+.weather-app .temp {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
 }
 .weather-app p:last-child {
-  color: rgb(204, 226, 238);
-  font-size: 0.6em;
-  padding-bottom: 20px;
-  text-transform: capitalize;
+  color: #ffffff;
+  font-size: 1em;
 }
 
-.weather-app .temp {
-  width: 50%;
-  display: flex;
-  justify-content: space-around;
-}
 .weather-info {
   width: 100%;
   height: 35%;
@@ -96,7 +93,7 @@ section {
 }
 
 .weather-info h3 {
-  font-size: 0.7em;
+  font-size: 1em;
   font-weight: 400;
   color: rgb(0, 0, 0);
 }
@@ -106,12 +103,27 @@ section {
   justify-content: space-between;
   align-items: center;
   font-size: 0.8em;
+  font-weight: 300;
+}
+
+.weather-info .next-day {
+  border-bottom: 2px solid #0000002f;
 }
 
 .weather-info div p {
   width: 50px;
   text-align: center;
   padding: 0 5px;
+}
+
+.temp div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.temp div p {
+  padding: 0 15px;
 }
 /* Weather Types */
 
@@ -137,4 +149,13 @@ section {
 .cloudNight {
   background: url("img/perchek-industrie-0cpfP5E86B4-unsplash.jpg");
   background-size: cover;
+}
+
+/*Temperature max and min*/
+.max {
+  color: #810000;
+}
+
+.min {
+  color: rgb(2, 53, 100);
 }
