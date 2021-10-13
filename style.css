@@ -10,13 +10,14 @@ html {
 }
 
 body {
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto Mono', monospace;
   background-size: cover;
   font-size: 20px;
+  background: black;
 }
 
 body::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -131,26 +132,26 @@ section {
 /* Weather Types */
 
 .clear {
-  background: url("img/patrick-fore-1gT773Pm8Mo-unsplash.jpg");
+  background: url('img/patrick-fore-1gT773Pm8Mo-unsplash.jpg');
   background-size: cover;
 }
 
 .clearNight {
-  background: url("img/jinen-shah-TwZb_z0Cf88-unsplash.jpg");
+  background: url('img/jinen-shah-TwZb_z0Cf88-unsplash.jpg');
   background-size: cover;
 }
 .rain {
-  background: url("img/osman-rana-GXEZuWo5m4I-unsplash.jpg");
+  background: url('img/osman-rana-GXEZuWo5m4I-unsplash.jpg');
   background-size: cover;
 }
 
 .cloud {
-  background: url("img/zbynek-burival-8iZG31eXkks-unsplash.jpg");
+  background: url('img/zbynek-burival-8iZG31eXkks-unsplash.jpg');
   background-size: cover;
 }
 
 .cloudNight {
-  background: url("img/perchek-industrie-0cpfP5E86B4-unsplash.jpg");
+  background: url('img/perchek-industrie-0cpfP5E86B4-unsplash.jpg');
   background-size: cover;
 }
 

@@ -1,24 +1,26 @@
 const currentDate = new Date();
 const currentDay = dayString(currentDate.getDay());
-const nameCity = document.querySelector(".weather__city h1");
-const nameDay = document.querySelector(".weather__city h2");
-const degrees = document.querySelector(".degrees");
-const max = document.querySelector(".max p");
-const min = document.querySelector(".min p");
-const section = document.querySelector("section");
-const body = document.querySelector("body");
-const nextDay = document.querySelectorAll(".next-day");
+const nameCity = document.querySelector('.weather__city h1');
+const nameDay = document.querySelector('.weather__city h2');
+const degrees = document.querySelector('.degrees');
+const max = document.querySelector('.max p');
+const min = document.querySelector('.min p');
+const section = document.querySelector('section');
+const body = document.querySelector('body');
+const nextDay = document.querySelectorAll('.next-day');
 
-if ("geolocation" in navigator) {
+if (localStorage.getItem('lat')) {
+  const lat = localStorage.getItem('lat');
+  const lon = localStorage.getItem('lon');
+  getData(lat, lon);
+} else {
   navigator.geolocation.getCurrentPosition(function (position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
+    localStorage.setItem('lat', lat);
+    localStorage.setItem('lon', lon);
     getData(lat, lon);
   });
-} else {
-  alert(
-    "I'm sorry, but geolocation services are not supported by your browser."
-  );
 }
 
 async function getData(lat, lon) {
@@ -42,7 +44,6 @@ function addNextForecast(forecastData) {
   let index = 0;
 
   nextDay.forEach((element) => {
-    console.log(element.children[2].children[1]);
     element.children[1].innerText = forecastData.daily[index].weather[0].main;
     element.children[2].children[1].innerText =
       forecastData.daily[index].temp.max.toFixed(0);
@@ -94,68 +95,68 @@ function nextForecast(forecastData) {
 function dayString(day) {
   switch (day) {
     case 1:
-      return "Monday";
+      return 'Monday';
 
     case 2:
-      return "Tuesday";
+      return 'Tuesday';
 
     case 3:
-      return "Wednesday";
+      return 'Wednesday';
 
     case 4:
-      return "Thursday";
+      return 'Thursday';
 
     case 5:
-      return "Friday";
+      return 'Friday';
 
     case 6:
-      return "Saturday";
+      return 'Saturday';
 
     case 7:
-      return "Sunday";
+      return 'Sunday';
   }
 }
 
 function getWeather(forecastData) {
-  if (forecastData.current.weather[0].main === "Clear") {
+  if (forecastData.current.weather[0].main === 'Clear') {
     if (
       currentDate / 1000 > forecastData.current.sunrise &&
       currentDate / 1000 < forecastData.current.sunset
     ) {
-      body.classList.add("clear");
+      body.classList.add('clear');
     } else {
-      body.classList.add("clearNight");
+      body.classList.add('clearNight');
     }
   }
 
-  if (forecastData.current.weather[0].main === "Clouds") {
+  if (forecastData.current.weather[0].main === 'Clouds') {
     if (
       currentDate / 1000 > forecastData.current.sunrise &&
       currentDate / 1000 < forecastData.current.sunset
     ) {
-      body.classList.add("cloud");
+      body.classList.add('cloud');
     } else {
-      nameCity.style.color = "white";
-      body.classList.add("cloudNight");
-      nameDay.style.color = "white";
+      nameCity.style.color = 'white';
+      body.classList.add('cloudNight');
+      nameDay.style.color = 'white';
     }
   }
 
-  if (forecastData.current.weather[0].main === "Rain") {
-    body.classList.add("rain");
+  if (forecastData.current.weather[0].main === 'Rain') {
+    body.classList.add('rain');
   }
 }
 
 function weatherApp(forecastData, currentData) {
-  section.style.opacity = "1";
-  section.style.transition = "1s";
+  section.style.opacity = '1';
+  section.style.transition = '1s';
   nextForecast(forecastData);
   getWeather(forecastData, currentData);
   nameCity.innerText = `${currentData.name}, ${currentData.sys.country}`;
   nameDay.innerText = `${currentDay}
   ${currentDate.getHours()}:${
     currentDate.getMinutes() < 10
-      ? "0" + currentDate.getMinutes()
+      ? '0' + currentDate.getMinutes()
       : currentDate.getMinutes()
   }`;
   degrees.innerText = `${forecastData.current.temp.toFixed(0)}°`;
